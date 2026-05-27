@@ -1,0 +1,101 @@
+<html>
+
+	<head>
+	<title>placeholder</title>
+	<link rel="stylesheet" type="html/css" href="./main.css">
+	<script src="Player.js"></script>
+	<script src="World.js"></script>
+	</head>
+
+	<body>
+	<p>placeholder example text that exists for testing code / elements of a page</p>
+
+	<canvas id="gFrame" width="400" height="400"></canvas>
+	<script>
+		const canvas = document.getElementById("gFrame");
+		const ctx = canvas.getContext("2d");
+
+		let running = 1;
+
+		let kInput = 0;		
+
+		let worldH = 50;
+		let worldW = 50;
+
+		let tileSize = 16;
+		let tileScaler = 3;
+		let ntileSize = tileSize * tileScaler;
+
+		const p = new Game.Player(this);
+		const w = new Game.World(this, p);
+		
+		// input handling
+		document.addEventListener("keydown", function(event) {
+			console.log('key pressed:');
+			console.log(event.key);
+			
+			kInput = event.key;
+		});
+			
+		document.addEventListener("keyup", function(event) {
+			
+			let direction = 0;
+
+			if (event.key == "w" || event.key == "s") {
+				kInput = 0;
+				direction = 1;
+			}
+
+			if (event.key == "a" || event.key == "d") {
+				kInput = 0;
+				direction = 2;
+			}
+			
+			p.movereset(direction);
+		});
+
+		function main() {
+			run();
+		}
+
+		function run() {
+			update();
+			render();
+		}
+		
+		function stop() {
+			running = 0;
+		}
+
+		// player movement
+		function update() {
+
+			p.move(kInput);
+
+			p.update();
+		}
+
+
+		function render() {
+			// lets clear old frames otherwise bad overlapping may occur
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			
+			// world
+			w.render();
+
+			// player
+			p.render();
+
+			requestAnimationFrame(main);
+		}
+
+	main();
+	
+	
+	</script>
+
+	<p>controls:</p>
+	<p>WASD for movement</p>
+
+</body>
+</html>
