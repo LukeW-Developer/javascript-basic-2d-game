@@ -2,7 +2,7 @@
 
 ## Overview
 
-A small open-world style 2D game prototype developed in JavaScript during College lessons as a timed programming challenge.
+A small open-world style 2D game prototype developed in JavaScript during free time at College as a timed programming challenge.
 
 The project was created in under 30 minutes to test rapid problem-solving, modular code structure, and fast-paced game development techniques while maintaining readable and organised code.
 
